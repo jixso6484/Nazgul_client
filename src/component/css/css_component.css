@@ -1,0 +1,7 @@
+:root {
+    --main-bg-color: white; /* 헤더 배경색 */
+    --main-text-color: #878a8c; /* 기본 텍스트 색상 */
+    --main-highlight-color: #1a73e8; /* 하이라이트 색상 */
+    --main-border-color: #ccc; /* 기본 경계선 색상 */
+    --input-bg-color: #f6f7f8; /* 검색 입력 배경 */
+}
