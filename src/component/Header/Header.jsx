@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
+import checkLoginStatus from "../auth/checkLogin"
 
 const Header = () => {
-    const [searchQuery, setSearchQuery] = useState("");
+    const [formState, setFormState] = useState({
+        searchQuery: "", // 검색어 상태 추가
+        username: "",
+        isLoggedIn: false,
+    });
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log("Search query:", searchQuery);
+        console.log("Search query:", formState.searchQuery); // 검색어 출력
     };
+
+    useEffect(() => {
+        const State = checkLoginStatus();
+        setFormState((prevState) => ({
+            ...prevState,
+            isLoggedIn: State,
+        }));
+    }, []);
 
     return (
         <header className="header">
@@ -23,8 +36,13 @@ const Header = () => {
                         type="text"
                         className="search-input"
                         placeholder="Search..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        value={formState.searchQuery} // 상태에서 검색어 가져오기
+                        onChange={(e) =>
+                            setFormState((prevState) => ({
+                                ...prevState,
+                                searchQuery: e.target.value, // 검색어 업데이트
+                            }))
+                        }
                     />
                     <button type="submit" className="search-button">Search</button>
                 </form>
@@ -46,7 +64,13 @@ const Header = () => {
                         </li>
                         {/* 로그인 페이지로 이동 */}
                         <li className="nav-item">
-                            <a href="/login" className="nav-link">Login</a>
+                            <a href="/login" className="nav-link">
+                                {formState.isLoggedIn ? (
+                                    <img src="/image/Login_out/login.png" alt="Logged In" />
+                                ) : (
+                                    <img src="/image/Login_out/logout.png" alt="Logged Out" />
+                                )}
+                            </a>
                         </li>
                     </ul>
                 </nav>
