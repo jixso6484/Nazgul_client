@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 import supabase from '../auth/superbase';
-import signup from '../auth/Signup';
+import signup from '../auth/signup';
 
 const SignupPage = () => {
     const [email, setEmail] = useState('');
