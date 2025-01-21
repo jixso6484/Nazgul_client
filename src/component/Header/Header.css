@@ -142,6 +142,60 @@
     transform: scale(1.1);
     opacity: 0.8;
 }
+/* 드롭다운 메뉴 */
+.dropdown-menu {
+    position: absolute;
+    background-color: #ffffff; /* 흰색 배경 */
+    border: 1px solid #ddd; /* 부드러운 경계선 */
+    border-radius: 8px; /* 둥근 모서리 */
+    padding: 10px; /* 내부 여백 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 더 부드러운 그림자 */
+    z-index: 1000;
+    transform: translateY(10px); /* 클릭한 버튼 바로 아래 */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 활성화 상태 */
+.dropdown-menu.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+/* 드롭다운 아이템 */
+.dropdown-item {
+    display: flex; /* 아이콘과 텍스트 정렬을 위한 Flex */
+    align-items: center;
+    gap: 10px; /* 아이템 간 간격 */
+    padding: 10px 15px; /* 여유 있는 내부 여백 */
+    text-decoration: none;
+    color: #333333; /* 어두운 텍스트 */
+    border-radius: 6px; /* 둥근 모서리 */
+    font-size: 15px; /* 적당한 텍스트 크기 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 아이템 호버 효과 */
+.dropdown-item:hover {
+    background-color: #f8f9fa; /* 부드러운 회색 배경 */
+    color: #4caf50; /* 텍스트 강조색 */
+}
+
+/* 아이템 내 아이콘 스타일 */
+.dropdown-item img {
+    height: 20px;
+    width: 20px;
+    border-radius: 4px; /* 모서리 약간 둥글게 */
+}
+
+/* 드롭다운 구분선 */
+.dropdown-divider {
+    height: 1px;
+    background-color: #e9ecef;
+    margin: 8px 0;
+}
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
@@ -161,4 +215,10 @@
         justify-content: center;
         flex-wrap: wrap; /* 버튼 줄바꿈 허용 */
     }
+    .dropdown-menu {
+        width: 90%; /* 화면 크기에 맞게 확장 */
+        left: 50%;
+        transform: translate(-50%, 10px); /* 가운데 정렬 */
+    }
+    
 }

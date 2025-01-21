@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "private": true,
   "dependencies": {
-    "@supabase/supabase-js": "^2.47.12",
+    "@supabase/supabase-js": "^2.47.16",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",

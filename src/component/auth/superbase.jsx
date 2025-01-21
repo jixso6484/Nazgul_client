@@ -8,7 +8,6 @@ if (!supabaseUrl || !supabaseApiKey) {
     console.error("Supabase URL or API Key is missing.");
     throw new Error("Supabase URL and API Key must be provided!");
 }
-
 const supabase = createClient(supabaseUrl, supabaseApiKey);
 
 export default supabase;

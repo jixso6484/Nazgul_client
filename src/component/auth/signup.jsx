@@ -1,32 +1,31 @@
-import supabase from "./supabase"; // 상대 경로 맞게 수정
+import supabase from "./superbase";
 
-const signupFun = async () => {
+async function signup(email, password, nickname, isEmailAvailable) {
+    if (isEmailAvailable) {
+        console.log('회원가입 오류: 이메일 중복 체크가 필요합니다.');
+        return { success: false, error: '이메일 중복 체크가 필요합니다.' };
+    }
+
     try {
-        // 회원가입 처리
         const { data, error } = await supabase.auth.signUp({
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
+            email,
+            password,
+            options: {
+                data: { nickname },
+            },
         });
 
         if (error) {
-            console.error("회원가입 중 에러 발생:", error.message);
-            return;
+            console.error('회원가입 오류:', error.message);
+            return { success: false, error: error.message };
         }
 
-        // 데이터 삽입
-        const userData = await supabase.from("userInfo").insert({
-            id: data.user?.id,
-            email: data.user?.email,
-            created_at: data.user?.created_at,
-            username: usernameRef.current.value,
-        });
-
-        if (userData.error) {
-            console.error("데이터 삽입 중 에러 발생:", userData.error.message);
-        } else {
-            console.log("유저 데이터 삽입 완료:", userData.data);
-        }
+        console.log('회원가입 성공:', data);
+        return { success: true, data };
     } catch (err) {
-        console.error("예기치 않은 에러:", err.message);
+        console.error('예상치 못한 오류 발생:', err);
+        return { success: false, error: 'Unexpected error occurred.' };
     }
-};
+}
+
+export default signup;
