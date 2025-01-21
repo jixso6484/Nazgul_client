@@ -7,3 +7,5 @@ Cummunitu site Nazgul Test
 
 ## 2025 - 01 - 17 
 - ui 변경
+## 2025 - 01 - 21 
+- 회원가입 로그인 오류 수정
